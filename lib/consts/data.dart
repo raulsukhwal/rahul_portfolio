@@ -1,15 +1,17 @@
-import 'package:awesome_portfolio/models/app_model.dart';
-import 'package:awesome_portfolio/models/color_model.dart';
-import 'package:awesome_portfolio/models/device_model.dart';
-import 'package:awesome_portfolio/screen/miniProjects/education/education.dart';
-import 'package:awesome_portfolio/screen/miniProjects/experience/experience.dart';
+
+
 import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../models/app_model.dart';
+import '../models/color_model.dart';
+import '../models/device_model.dart';
 import '../models/experience_model.dart';
 import '../models/skill_model.dart';
 import '../screen/miniProjects/about/about.dart';
+import '../screen/miniProjects/education/education.dart';
+import '../screen/miniProjects/experience/experience.dart';
 import '../screen/miniProjects/skills/skills.dart';
 
 const double baseHeight = 790;
