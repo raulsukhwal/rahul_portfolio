@@ -19,7 +19,7 @@ class ScreenWrapper extends StatelessWidget {
           if (!instance.isMainScreen) {
             return Container(
               width: double.infinity,
-              decoration: const BoxDecoration(color:Color(0xffDCDEDD),),
+              decoration: const BoxDecoration(color: Colors.transparent,),
               padding: const EdgeInsets.only(top: 30),
               // height: 50,
               child: Padding(
@@ -27,14 +27,10 @@ class ScreenWrapper extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      instance.title ?? "",
-                      style: GoogleFonts.inter(fontSize: 18),
-                    ),
                     IconButton(
                       icon: const Icon(
-                        Icons.close,
-                        color: Colors.black,
+                        Icons.arrow_back_ios,
+                        color: Colors.white60,
                       ),
                       onPressed: () {
                         instance.changePhoneScreen(
@@ -43,6 +39,28 @@ class ScreenWrapper extends StatelessWidget {
                         );
                       },
                     ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8,8,39,8),
+                      child: Text(
+                        instance.title ?? "",
+                        style: GoogleFonts.inter(fontSize: 19,color: Colors.white60),
+                      ),
+                    ),
+                    Text(''),
+
+
+                    // IconButton(
+                    //   icon: const Icon(
+                    //     Icons.arrow_back_ios,
+                    //     color: Colors.black,
+                    //   ),
+                    //   onPressed: () {
+                    //     instance.changePhoneScreen(
+                    //       const PhoneHomeScreen(),
+                    //       true,
+                    //     );
+                    //   },
+                    // ),
                   ],
                 ),
               ),

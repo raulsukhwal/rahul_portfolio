@@ -39,14 +39,14 @@ class _AboutMeState extends State<AboutMe> {
       phone = true;
     }
     return Scaffold(
-      backgroundColor: Color(0xffDCDEDD),
+      backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Container(
             decoration: BoxDecoration(
-              color: const Color(0xffDCDEDD),
+              color:  Colors.transparent,
               borderRadius: BorderRadius.circular(15),
             ),
             padding: const EdgeInsets.all(10),
@@ -82,13 +82,13 @@ class _AboutMeState extends State<AboutMe> {
                   child: Text(
                     "Hi, I am Rahul Sukhwal",
                     style: GoogleFonts.openSans(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                        fontSize: 24, fontWeight: FontWeight.w800,color: Colors.white60),
                   ),
                 ),
                 Text(
                   introduction,
                   style: GoogleFonts.openSans(
-                      fontSize: 15, fontWeight: FontWeight.w500),
+                      fontSize: 18, fontWeight: FontWeight.w800,color: Colors.white60),
                 ).animate().fadeIn(duration: const Duration(milliseconds: 500)),
                 const SizedBox(height: 20),
                 Center(
@@ -108,10 +108,12 @@ class _AboutMeState extends State<AboutMe> {
                           style: GoogleFonts.openSans(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.white60,
                             decoration: TextDecoration.underline,
                           ),
+
                         ),
+                        const SizedBox(height: 8),
                       ],
                     ),
 
@@ -126,10 +128,10 @@ class _AboutMeState extends State<AboutMe> {
   }
 
   void _launchWhatsApp() async {
-    final String phoneNumber = "+918209556233"; // Replace with your phone number
-    final String message = "Hello, Rahul! I found you through your portfolio and wanted to reach out.";
+    const String phoneNumber = "+918209556233"; // Replace with your phone number
+    const String message = "Hello, Rahul! I found you through your portfolio and wanted to reach out.";
 
-    final String url = "https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}";
+    final String url = "https://api.whatsapp.com/send?phone=$phoneNumber&text=${Uri.encodeComponent(message)}";
 
     if (await canLaunch(url)) {
       await launch(url);

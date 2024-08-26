@@ -13,9 +13,10 @@ import '../screen/miniProjects/about/about.dart';
 import '../screen/miniProjects/education/education.dart';
 import '../screen/miniProjects/experience/experience.dart';
 import '../screen/miniProjects/skills/skills.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 const double baseHeight = 790;
-const double baseWidth = 1440;
+const double baseWidth = 1340;
 
 List<DeviceModel> devices = [
   DeviceModel(
@@ -151,81 +152,91 @@ ColorModel(
   ),
 ];
 
+
+
 List<AppModel> apps = [
   AppModel(
       title: "About",
       color: Colors.white,
-      icon: Icons.person,
+      assetPath: "assets/icons/aboutme.png",
       screen: const AboutMe()),
   AppModel(
       title: "Skills",
       color: Colors.white,
-      icon: Icons.ac_unit_rounded,
+      assetPath: "assets/icons/online.png",
+      // icon: Icons.flutter_dash,
       screen: const Expertise()),
   AppModel(
     title: "Youtube",
-    assetPath: "assets/icons/youtube.svg",
+    assetPath: "assets/icons/youtube.png",
     color: Colors.white,
     link: youtubeChannel,
+    //isSvg: true,
   ),
   AppModel(
     title: "LinkedIn",
-    assetPath: "assets/icons/linkedin.svg",
+    assetPath: "assets/icons/linkedin.png",
     color: Colors.white,
     link: linkedIn,
+   // isSvg: true,
   ),
   AppModel(
     title: "X",
-    assetPath: "assets/icons/twitter.svg",
+    assetPath: "assets/icons/twitter.png",
     color: Colors.white,
     link: twitter,
+   // isSvg: true,
   ),
   AppModel(
     title: "Instagram",
-    assetPath: "assets/icons/topMate.png",
+    assetPath: "assets/icons/instagram.png",
     color: Colors.white,
     link: instagram,
   ),
   AppModel(
     title: "Resume",
-    assetPath: "assets/icons/topMate.png",
+    assetPath: "assets/icons/cv.png",
     color: Colors.white,
     link: resumeLink,
   ),
   AppModel(
     title: "fiverr",
-    assetPath: "assets/icons/topMate.png",
+    assetPath: "assets/icons/fiverr.png",
     color: Colors.white,
     link: fiverLink,
   ),
   AppModel(
     title: "Whatsapp",
-    assetPath: "assets/icons/topMate.png",
+    assetPath: "assets/icons/whatsapp.png",
     color: Colors.white,
     link: whatsapp,
   ),
   AppModel(
       title: "Experience",
       color: Colors.white,
-      icon: FontAwesomeIcons.idBadge,
+      assetPath: "assets/icons/experience.png",
+     // icon: FontAwesomeIcons.idBadge,
       screen: const Experience()),
   AppModel(
     title: "Education",
     color: Colors.white,
-    icon: FontAwesomeIcons.edge,
+    assetPath: "assets/icons/education.png",
+    //icon: FontAwesomeIcons.edge,
     screen: const Education(),
   ),
   AppModel(
     title: "Github",
-    assetPath: "assets/icons/github.svg",
+    assetPath: "assets/icons/github.png",
     color: Colors.white,
     link: github,
+   // isSvg: true,
   ),
   AppModel(
     title: "Play Store",
-    assetPath: "assets/icons/playstore.svg",
+    assetPath: "assets/icons/playstore.png",
     color: Colors.white,
     link: playApps,
+   // isSvg: true,
   ),
 ];
 
@@ -238,7 +249,7 @@ final List<JobExperience> education = [
     startDate: 'July 2022',
     endDate: 'Sept 2024',
     bulletPoints: [
-      "Dream big, work hard, and stay focused.",
+      "Dream big, work hard and stay focused.",
     ],
   ),
   JobExperience(
@@ -339,7 +350,8 @@ When I’m not coding or brainstorming the next big app, you can find me on the 
 
      Feel free to explore and connect with me!
 ''';
-const String whatsapp = "https://wa.me/9828675455";
+const String whatsapp = "https://wa.me/918209556233?text=Hello, Rahul! I found you through your portfolio and wanted to reach out.,%20I%20would%20like%20to%20inquire%20about%20your%20services";
+
 
 const String playApps =
     "https://play.google.com/store/apps/details?id=com.pallimart.app";

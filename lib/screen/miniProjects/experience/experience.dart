@@ -9,7 +9,7 @@ class Experience extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.white60,
       body: ListView(
         children: [
           // const SizedBox(
@@ -36,13 +36,13 @@ class Experience extends StatelessWidget {
               ),
               title: Text(
                 experience.title,
-                style: GoogleFonts.inter(fontWeight: FontWeight.bold),
+                style: GoogleFonts.inter(fontWeight: FontWeight.w900),
               ),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 5),
                 child: Text(
                   '${experience.company}\n${experience.startDate} - ${experience.endDate} | ${experience.location}',
-                  style: GoogleFonts.inter(fontSize: 13, color: Colors.grey),
+                  style: GoogleFonts.inter(fontSize: 18, color: Colors.black54,fontWeight: FontWeight.w700),
                 ),
               ),
               children: experience.bulletPoints.map((bulletPoint) {
@@ -77,7 +77,7 @@ class Experience extends StatelessWidget {
                         child: Text(
                           bulletPoint,
                           style: GoogleFonts.inter(
-                            fontSize: 12,
+                            fontSize: 16,
                           ),
                           maxLines: 3,
                         ),
