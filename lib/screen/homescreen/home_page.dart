@@ -5,6 +5,7 @@ import 'package:awesome_portfolio/providers/theme_provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:custom_button_builder/custom_button_builder.dart';
 import 'package:device_frame/device_frame.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,18 +37,19 @@ class HomePage extends StatelessWidget {
     theme.size = MediaQuery.of(context).size;
     theme.widthRatio = theme.size.width / baseWidth;
     theme.heightRatio = theme.size.height / baseHeight;
-    bool phone = size.width < 800;
+    bool phone = size.width < 750;
 
     // Set the expanded height differently for phone and non-phone devices
     double expandedHeight = phone ? size.height * 0.5 : size.height;
     // Initialize a CarouselController
-    //final CarouselController _carouselController = CarouselController();
+   // final CarouselController _carouselController = CarouselController();
 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             expandedHeight: expandedHeight,
+
             pinned: false,
             flexibleSpace: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
@@ -59,12 +61,11 @@ class HomePage extends StatelessWidget {
                   children: [
                 Positioned.fill(
                 child: Image.asset(
-                  'assets/git/lastbg.gif',
+                  'assets/git/765456.gif',
                   fit: BoxFit.cover,)),
-                    // Parallax Image and Video Swiper
                     Positioned(
-                      top: parallax, // Parallax effect
-                      bottom: -parallax, // Parallax effect
+                      top: parallax,
+                      bottom: -parallax,
                       left: 0,
                       right: 0,
                       child: CarouselSlider(
@@ -77,10 +78,10 @@ class HomePage extends StatelessWidget {
                           enlargeCenterPage: false,
                         ),
                         items: [
+
                           'assets/git/welcoming.gif',
-                          //'assets/git/second.png',
-                          'assets/git/vlog-ig.gif',
-                          'assets/git/swiper-background.png',
+                          'assets/git/234561.gif',
+                          // 'assets/git/swiper-background.png',
                         ].map((item) {
                           return AnimatedOpacity(
                             opacity: 1.0,
@@ -99,202 +100,198 @@ class HomePage extends StatelessWidget {
 
                     ),
 
-
-//                     // Animated Left swipe icon
-//                     Positioned(
-//                       left: 10,
-//                       top: 0,
-//                       bottom: 0,
-//                       child: SizedBox(
-//                         width: 50, // Specify a fixed width
-//                         height: 50,
-//                         child: GestureDetector(
-//                           onTap: () {
-//                             _carouselController.previousPage();
-//                           },
-//                           child: Icon(
-//                             Icons.arrow_back_ios, // Left swipe icon
-//                             color: Colors.red,
-//                             size: 30,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-// // Animated Right swipe icon
-//                     Positioned(
-//                       right: 10,
-//                       top: 0,
-//                       bottom: 0,
-//                       child: SizedBox(
-//                         width: 50, // Specify a fixed width
-//                         height: 50,
-//                         child: GestureDetector(
-//                           onTap: () {
-//                             _carouselController.nextPage();
-//                           },
-//                           child: Icon(
-//                             Icons.arrow_forward_ios, // Right swipe icon
-//                             color: Colors.red,
-//                             size: 30,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-
-
                   ],
                 );
               },
             ),
           ),
 
-          SliverToBoxAdapter(
+      SliverToBoxAdapter(
+        child: Column(
+          children: [
+            // Gradient and background wave
+            Selector<CurrentState, Gradient>(
+              child: WavyContainer(
+                height: MediaQuery.of(context).size.height * 0.30, // 30% of screen height
+                width: MediaQuery.of(context).size.width * 1,
 
-            child: Column(
+                // 100% of screen width
+                color: Colors.black  ,                 // Dark teal color
+                child: Container(
+                  color: Colors.black
+                ),
+              ),
+              selector: (context, provider) => provider.bgGradient,
+              builder: (context, gradient, __) {
+                return Container(
+                  decoration: BoxDecoration(gradient: gradient),
+                );
+              },
+            ),
+
+            Stack(
               children: [
                 Selector<CurrentState, Gradient>(
-                selector: (context, provider) => provider.bgGradient,
-                builder: (context, gradient, __) {
-                  return Container(
-                    decoration: BoxDecoration(gradient: gradient),
-                    child: WavyContainer(
-                      height: MediaQuery.of(context).size.height * 0.30, // 30% of screen height
-                      width: MediaQuery.of(context).size.width*1,          // 100% of screen width
-                      color: const Color(0xff03383e),                    // Dark teal color
-                      child: Container(
-                        color: const Color(0xff03383e),
-                      ),
-                    ),
-                  );})
+                  selector: (context, provider) => provider.bgGradient,
+                  builder: (context, _, __) {
+                    return Container(
+                      height: size.height, // Ensure the container fills the height
+                      decoration: BoxDecoration(gradient: currentState.bgGradient),
+                    );
+                  },
+                ),
 
-                ,Stack(
+                size.height > 600
+                    ? const Rain(
+
+                  top: 120, oposite: false,
+                )
+                    : Container(),
+
+                Selector<CurrentState, String>(
+                  selector: (context, provider) => provider.selectedCloud,
+                  builder: (context, _, __) {
+                    return SvgPicture.asset(
+                      currentState.selectedCloud,
+                      height: size.height,
+                      fit: BoxFit.cover,
+                    );
+                  },
+                ),
+
+                size.height > 600
+                    ? const Rain(
+
+                  top: 50, oposite: true,
+                )
+                    : Container(),
+
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // SizedBox(height: 200,),
-
-
-                    Selector<CurrentState, Gradient>(
-                      selector: (context, provider) => provider.bgGradient,
-                      builder: (context, _, __) {
-                        return Container(
-                          height: size.height, // Ensure the container fills the height
-                          decoration: BoxDecoration(gradient: currentState.bgGradient),
-                        );
-                      },
-                    ),
-                    size.height > 600
-                        ? const Rain(
-                      oposite: false,
-                      top: 300,
-                    )
-                        : Container(),
-                    Selector<CurrentState, String>(
-                      selector: (context, provider) => provider.selectedCloud,
-                      builder: (context, _, __) {
-                        return SvgPicture.asset(
-                          currentState.selectedCloud,
-                          height: size.height,
-                          fit: BoxFit.cover,
-                        );
-                      },
-                    ),
-                    size.height > 600
-                        ? const Rain(
-                      oposite: true,
-                      top: 50,
-                    )
-                        : Container(),
-                    Column(
+                    const SizedBox(height: 100),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 10),
-                        Row(
+                        // Check if it's a phone, show the frosted containers either on the sides or below the phone widget
+                        phone
+                            ? Container() // Don't show frosted containers on the side if it's a phone
+                            : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            phone
-                                ? Container()
-                                : Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                _buildFrostedContainer1(theme, currentState),
-                                _buildFrostedContainer2(theme, currentState),
-                              ],
-                            ),
-
-                            // Main mobile screen
-                            SizedBox(
-                              height: size.height - 100,
-                              child: Consumer<CurrentState>(
-                                builder: (context, _, __) {
-                                  return DeviceFrame(
-                                    device: currentState.currentDevice,
-                                    screen: Container(
-                                        decoration: BoxDecoration(
-                                            gradient: currentState.bgGradient),
-                                        child: ScreenWrapper(
-                                            childG: currentState.currentScreen)),
-                                  );
-                                },
-                              ),
-                            ),
-
-                            // Right side frosted containers
-                            phone
-                                ? Container()
-                                : Column(
-                              children: [
-                                _buildFrostedContainer3(theme, currentState),
-                                const SizedBox(height: 10),
-                                _buildFrostedContainer4(theme, currentState),
-                              ],
-                            ),
+                            _buildFrostedContainer1(theme, currentState),
+                            _buildFrostedContainer2(theme, currentState),
                           ],
                         ),
-                        SizedBox(height: 10 * theme.heightRatio),
 
-                        // Bottom button for device selection
-                        Selector<CurrentState, DeviceInfo>(
-                            selector: (context, p1) => p1.currentDevice,
+                        SizedBox(width: 15),
+
+                        // Main mobile screen
+                        SizedBox(
+                          height: size.height - 80,
+
+                          child: Consumer<CurrentState>(
                             builder: (context, _, __) {
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  ...List.generate(devices.length, (index) {
-                                    return CustomButton(
-                                      pressed: currentState.currentDevice ==
-                                          devices[index].device
-                                          ? Pressed.pressed
-                                          : Pressed.notPressed,
-                                      animate: true,
-                                      borderRadius: 100,
-                                      isThreeD: true,
-                                      backgroundColor: Colors.black,
-                                      width: 37.5,
-                                      height: 37.5,
-                                      onPressed: () {
-                                        currentState.changeSelectedDevice(
-                                          devices[index].device,
-                                        );
-                                      },
-                                      child: Center(
-                                        child: Icon(
-                                          devices[index].icon,
-                                          color: Colors.white,
-                                          size: 25,
-                                        ),
-                                      ),
-                                    );
-                                  })
-                                ],
+                              return DeviceFrame(
+                                device: currentState.currentDevice,
+                                screen: Container(
+                                  decoration: BoxDecoration(
+                                      gradient: currentState.bgGradient),
+                                  child: ScreenWrapper(
+                                      childG: currentState.currentScreen),
+                                ),
                               );
-                            })
+                            },
+                          ),
+                        ),
+
+                        SizedBox(width: 15),
+
+                        // Check if it's not a phone, show the frosted containers on the right side
+                        phone
+                            ? Container(color: Colors.red,)
+                            : Column(
+                          children: [
+                            _buildFrostedContainer3(theme, currentState),
+                            const SizedBox(height: 10),
+                            _buildFrostedContainer4(theme, currentState),
+                          ],
+                        ),
                       ],
+                    ),
+
+                    SizedBox(height: 10 * theme.heightRatio),
+
+                    // Conditionally move the frosted containers to the bottom if it's a small screen (phone)
+                    // phone
+                    //     ? Column(
+                    //   children: [
+                    //     // Rotated container
+                    //     Transform.rotate(
+                    //       angle: -0.5 * 3.14159, // 90 degrees in radians
+                    //       child: SizedBox(
+                    //         height: 250, // Width will be height in the rotated container
+                    //         width: 250,  // Height will be width in the rotated container
+                    //         child: _buildFrostedContainer3(theme, currentState),
+                    //       ),
+                    //     ),
+                    //
+                    //
+                    //     // Row containing the second and third containers
+                    //
+                    //   ],
+                    // )
+                       // : Container(), // Non-phone layouts handled separately
+
+
+                    // Device selection row
+                    Selector<CurrentState, DeviceInfo>(
+                      selector: (context, p1) => p1.currentDevice,
+                      builder: (context, _, __) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ...List.generate(
+                              phone ? 2 : devices.length, // Only show Android and iOS for phones
+                                  (index) {
+                                return CustomButton(
+                                  pressed: currentState.currentDevice ==
+                                      devices[index].device
+                                      ? Pressed.pressed
+                                      : Pressed.notPressed,
+                                  animate: true,
+                                  borderRadius: 100,
+                                  isThreeD: true,
+                                  backgroundColor: Colors.black,
+                                  width: 37.5,
+                                  height: 37.5,
+                                  onPressed: () {
+                                    currentState.changeSelectedDevice(
+                                        devices[index].device);
+                                  },
+                                  child: Center(
+                                    child: Icon(
+                                      devices[index].icon,
+                                      color: Colors.white,
+                                      size: 25,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ],
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
+      )
+
+      ],
       ),
     );
 
@@ -588,5 +585,5 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     throw UnimplementedError();
   }
 
-  
+
 }
